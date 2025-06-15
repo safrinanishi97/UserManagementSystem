@@ -1,0 +1,30 @@
+Open Visual Studio
+
+Click on Create a new project
+
+Choose ASP.NET Core Web API
+
+Click Next
+
+Field	Value
+Project Name	UserManagementSystem.API
+Location	Choose your UserManagementSystem\Backend\ folder manually
+Solution Name	UserManagementSystem
+
+
+🔷 Step 3: Project Settings
+✅ .NET Version: .NET 8 (LTS) or .NET 7
+
+✅ Uncheck Use HTTPS (optional, for easier testing)
+
+✅ Uncheck Enable OpenAPI Support (or keep if you want Swagger)
+
+✅ Click Create
+
+🔹 Open Package Manager Console (Tools → NuGet → PMC)
+Then run:
+
+Install-Package Microsoft.AspNetCore.Identity.EntityFrameworkCore
+Install-Package Microsoft.EntityFrameworkCore.SqlServer
+Install-Package Microsoft.EntityFrameworkCore.Tools
+version-8.0.6
