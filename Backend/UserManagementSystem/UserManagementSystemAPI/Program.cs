@@ -1,9 +1,11 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Text;
 using UserManagementSystemAPI.Data;
 using UserManagementSystemAPI.Helpers;
 using UserManagementSystemAPI.Models;
+using UserManagementSystemAPI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -47,7 +49,6 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -57,5 +58,11 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    await Seeder.SeedRolesAndAdminAsync(services);
+}
 
 app.Run();
